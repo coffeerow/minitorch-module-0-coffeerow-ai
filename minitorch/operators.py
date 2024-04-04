@@ -163,13 +163,14 @@ def zipWith(
 
     """
 
-    return lambda ls1, ls2: (fn(x,y) for x,y in zip(ls1,ls2))
+    def zippedWith(ls1: Iterable[float], ls2: Iterable[float] -> Iterable[float]: return (fn(x,y) for x, y in zip(ls1,ls2)))
+        return zippedWith
 
 
 def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
     "Add the elements of `ls1` and `ls2` using `zipWith` and `add`"
-   
-    return zipWith(add)(ls1,ls2)
+    addList = zipwith(add)
+    return addList(ls1,ls2)
 
 
 def reduce(
@@ -187,17 +188,22 @@ def reduce(
          $x_1 \ldots x_n$ and computes the reduction :math:`fn(x_3, fn(x_2,
          fn(x_1, x_0)))`
     """
+    def reducer(iterable: Iterable[float]) -> float: 
+        val = start 
+        for x in iterable: 
+            val = fn(val,x)
+        return val 
+    return reducer
     
-    return lambda ls: reduce(ls,fn,start)
 
 
 def sum(ls: Iterable[float]) -> float:
     "Sum up a list using `reduce` and `add`."
-    
-    return reduce(add,0)(ls)
+    reducer = reduce(add,0)
+    return reducer(ls)
 
 
 def prod(ls: Iterable[float]) -> float:
     "Product of a list using `reduce` and `mul`."
-    
-    return reduce(mul,1)(ls)
+    reducer = reduce(add,0)
+    return reducer(ls)
