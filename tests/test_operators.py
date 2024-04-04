@@ -108,7 +108,7 @@ def test_sigmoid(a: float) -> None:
     * It is  strictly increasing.
     """
     # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    assert sigmoid(a)
 
 
 @pytest.mark.task0_2
@@ -116,7 +116,21 @@ def test_sigmoid(a: float) -> None:
 def test_transitive(a: float, b: float, c: float) -> None:
     "Test the transitive property of less-than (a < b and b < c implies a < c)"
     # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    if a < b: 
+        if b < c:
+            assert a < c 
+    if a < c: 
+        if c < b:
+            assert b < c 
+    if b < a: 
+        if a < c: 
+            assert c < b 
+    if c < a: 
+        if a < b: 
+            assert c < b 
+    if c < b: 
+        if b < a:
+            assert c < a
 
 
 @pytest.mark.task0_2
@@ -126,7 +140,11 @@ def test_symmetric() -> None:
     gives the same value regardless of the order of its input.
     """
     # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    a = 8 
+    b = 10
+    result1 = mul(a,b)
+    result2 = mul(b, a)
+    assert result1 = result2 
 
 
 @pytest.mark.task0_2
@@ -136,7 +154,14 @@ def test_distribute() -> None:
     :math:`z \times (x + y) = z \times x + z \times y`
     """
     # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    x = 12 
+    y = 22
+    z = 9
+    
+    times2 = mul(z. add(x,y))
+    times3 = add(mul(z,x), mul(z,y))
+
+    assert times2 = times3
 
 
 @pytest.mark.task0_2
@@ -145,7 +170,13 @@ def test_other() -> None:
     Write a test that ensures some other property holds for your functions.
     """
     # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    a = 4
+    b = 6
+
+    fun2 = add(a,b)
+    fun3 = add(b,a)
+
+    assert fun2 = fun3
 
 
 # ## Task 0.3  - Higher-order functions
@@ -174,8 +205,9 @@ def test_sum_distribute(ls1: List[float], ls2: List[float]) -> None:
     is the same as the sum of each element of `ls1` plus each element of `ls2`.
     """
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
-
+    adder = zipWith(add) 
+    iterAdder = list(adder(ls1, ls2))
+    assert pytest.approx(sum(ls1) +sum(ls2), 1e-5) == pytest.approox(sum(iterAdder), 1e-5)
 
 @pytest.mark.task0_3
 @given(lists(small_floats))
