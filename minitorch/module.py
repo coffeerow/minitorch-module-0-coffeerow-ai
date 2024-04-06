@@ -34,17 +34,16 @@ class Module:
         def _train(module):
             module.training = True
             for m in module.modules():
-                _train(m)
-        return _train(m)
-    
+                _train(module)
+        return _train()
+     
     def eval(self) -> None:
         "Set the mode of this module and all descendent modules to `eval`."
         def _eval(module):
             module.training = False
             for m in module.modules():
-                _eval(m)
-        return eval(self)
-       
+                _eval(module)
+        return eval()
 
     def named_parameters(self) -> Sequence[Tuple[str, Parameter]]:
         """
