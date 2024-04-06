@@ -36,7 +36,7 @@ class Module:
             for m in module.modules():
                 _train(module)
         return _train()
-     
+
     def eval(self) -> None:
         "Set the mode of this module and all descendent modules to `eval`."
         def _eval(module):
