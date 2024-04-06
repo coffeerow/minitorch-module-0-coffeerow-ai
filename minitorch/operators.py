@@ -68,10 +68,13 @@ def sigmoid(x: float) -> float:
 
     for stability.
     """
+    sigmoid_ret = 0.0
     if x >= 0:
-        return 1.0 / (1.0 + math.exp(-x))
+        sigmoid_ret = 1.0 / (1.0 + math.exp(-x))
     if x < 0:
-        return math.exp(x) / (1.0 + math.exp(x))
+        sigmoid_ret = math.exp(x) / (1.0 + math.exp(x))
+    return sigmoid_ret
+
 
 def relu(x: float) -> float:
     """
@@ -81,8 +84,8 @@ def relu(x: float) -> float:
     """
     return (x > 0) * x
 
-EPS = 1e-6
 
+EPS = 1e-6
 
 def log(x: float) -> float:
     "$f(x) = log(x)$"

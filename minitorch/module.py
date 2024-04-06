@@ -40,7 +40,7 @@ class Module:
     def eval(self) -> None:
         "Set the mode of this module and all descendent modules to `eval`."
         def _eval(module):
-            module.training = False
+            module.training = True
             for m in module.modules():
                 _eval(module)
         return eval()
