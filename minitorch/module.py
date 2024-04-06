@@ -35,13 +35,13 @@ class Module:
         if len(self._modules) != 0:
             for key in self._modules:
                 self._modules[key].train()
+
     def eval(self):
         "Set the mode of this module and all descendent modules to `eval`."
         self.training = False
         if len(self._modules) != 0:
             for key in self._modules:
                 self._modules[key].eval()
-
 
     def named_parameters(self) -> Sequence[Tuple[str, Parameter]]:
         """
