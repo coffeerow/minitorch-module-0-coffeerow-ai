@@ -32,14 +32,14 @@ class Module:
     def train(self) -> None:
         "Set the mode of this module and all descendent modules to `train`."
         self.training = True
-        for m in self.module.modules():
+        for m in self.modules():
             m.training = True
         return
 
     def eval(self) -> None:
         "Set the mode of this module and all descendent modules to `eval`."
         self.training = False
-        for m in self.module.modules():
+        for m in self.modules():
             m.training = False
         return
 
@@ -51,25 +51,22 @@ class Module:
         Returns:
             The name and `Parameter` of each ancestor parameter.
         """
-        if len(self._modules) == 0:
-            new_dict = {}
-            for p in self._parameters:
-                new_dict[p] = self._parameters[p]
-            return new_dict
-        else:
-            this_para = {}
-            for key in self._parameters:
-                this_para[key] = self._parameters[key]
-            for key in self._modules:
-                child_para = self._modules[key].named_parameters()
-                for name in child_para:
-                    this_para[key + "." + name] = child_para[name]
-            return this_para
+        new_dict = {}
+        n=0
+        new_dict[n] = self._parameters
+        for p in self.modules():
+                n+=1
+                new_dict[n] = p
+        return new_dict
 
     def parameters(self) -> Sequence[Parameter]:
         "Enumerate over all the parameters of this module and its descendents."
-
-        return self.named_parameters().values()
+        m: Dict[str, Parameter] = self.__dict__["_parameters"]
+        all_parameters = list(m.values())   
+        for module in self.modules():
+             m: Dict[str, Parameter] = module.__dict__["_parameters"]
+             all_parameters.append(list(m.values()))
+        return all_parameters
 
     def add_parameter(self, k: str, v: Any) -> Parameter:
         """

@@ -87,6 +87,7 @@ def relu(x: float) -> float:
 
 EPS = 1e-6
 
+
 def log(x: float) -> float:
     "$f(x) = log(x)$"
     return math.log(x + EPS)
