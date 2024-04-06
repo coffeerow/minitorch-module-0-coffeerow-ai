@@ -72,7 +72,7 @@ def sigmoid(x: float) -> float:
         return 1.0 / (1.0 + math.exp(-x))
     if x < 0:
         return math.exp(x) / (1.0 + math.exp(x))
-
+    return sigmoid
 
 def relu(x: float) -> float:
     """
