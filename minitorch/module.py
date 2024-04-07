@@ -54,7 +54,7 @@ class Module:
         new_dict = []
         new_dict = list(self._parameters)
         for m in self.modules():
-            new_dict.append(list(m._parameters))
+            new_dict.extend(list(m._parameters))
         return new_dict
 
     def parameters(self) -> Sequence[Parameter]:
@@ -63,7 +63,7 @@ class Module:
         all_parameters = list(m.values())
         for module in self.modules():
             m1: Dict[str, Parameter] = module.__dict__["_parameters"]
-            all_parameters.append(list(m1.values()))
+            all_parameters.extend(list(m1.values()))
         return all_parameters
 
     def add_parameter(self, k: str, v: Any) -> Parameter:
