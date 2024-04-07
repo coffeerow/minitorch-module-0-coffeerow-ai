@@ -52,20 +52,20 @@ class Module:
             The name and `Parameter` of each ancestor parameter.
         """
         new_dict = {}
-        n=0
+        n = 0
         new_dict[n] = self._parameters
-        for p in self.modules():
-                n+=1
-                new_dict[n] = p
+        for m in self.modules():
+            n += 1
+            new_dict[n] = m._parameters
         return new_dict
 
     def parameters(self) -> Sequence[Parameter]:
         "Enumerate over all the parameters of this module and its descendents."
         m: Dict[str, Parameter] = self.__dict__["_parameters"]
-        all_parameters = list(m.values())   
+        all_parameters = list(m.values())
         for module in self.modules():
-             m: Dict[str, Parameter] = module.__dict__["_parameters"]
-             all_parameters.append(list(m.values()))
+            m1: Dict[str, Parameter] = module.__dict__["_parameters"]
+            all_parameters.append(list(m1.values()))
         return all_parameters
 
     def add_parameter(self, k: str, v: Any) -> Parameter:
