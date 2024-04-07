@@ -51,12 +51,10 @@ class Module:
         Returns:
             The name and `Parameter` of each ancestor parameter.
         """
-        new_dict = {}
-        n = 0
-        new_dict[n] = self._parameters
+        new_dict = []
+        new_dict = list(self._parameters)
         for m in self.modules():
-            n += 1
-            new_dict[n] = m._parameters
+            new_dict.append(list(m._parameters))
         return new_dict
 
     def parameters(self) -> Sequence[Parameter]:
