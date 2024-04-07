@@ -53,7 +53,7 @@ class Module:
         """
         new_dict = self._parameters.items()
         for m in self.modules():
-            new_dict.extend(list(m._parameters.items()))
+            new_dict(set(m._parameters.keys()))
         return new_dict
 
     def parameters(self) -> Sequence[Parameter]:
